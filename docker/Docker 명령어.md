@@ -1,5 +1,5 @@
 # ⭐Docker 명령어
-#### **가상환경 WSL2 에서 docker 로 파일 전송하기**
+#### **호스트에 있는 파일을 docker로 띄운 MySQL 서버로 파일 전송하기**
 ```
 docker cp /mnt/c/Users/user/[파일이름] [컨테이너 명]:/var/lib/mysql-files/[파일이름]
 ```
