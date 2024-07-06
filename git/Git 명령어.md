@@ -22,3 +22,8 @@ git checkout -b [브랜치 명] [커밋ID] // ex) git checkout -b feature abc123
   `git merge --continue`
 * 병합을 중단하지만, 병합을 시도하기 전의 상태로 되돌리지 않음
   `git merge --quit`
+
+#### **.gitmessage.txt 적용하기** 
+* `git config --global commit.template .gitmessage.txt` // 전체 프로젝트에 적용
+* `git config commit.template .gitmessage.txt` // 현재 프로젝트에만 적용
+* `git config (--global or --local or --system) --list` // git 설정된 목록 보기
