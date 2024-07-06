@@ -31,3 +31,10 @@ IGNORE 1 ROWS  // CSV파일의 첫 행을 무시,
 (컬럼명1, 컬렴명2, ... , @lat, @lon)  // csv파일의 컬럼명 적기
 SET POINT = ST_GeomFromText(CONCAT('POINT(', @lat,' ', @lon, ')'), 4326); // 지리 좌표(위도, 경도)인 POINT 가 컬럼에 있을 때 사용
 ```
+#### **MySQL 사용자 생성하고, 권한 주기**
+1. 사용자 생성
+`CRAETE USER 'username'@'host' IDENTIFIED BY 'password';`
+2. 생성된 사용자에게 DB권한 주기
+`GRANT ALL PRIVILEGES ON mydb.* TO 'username'@'host';`
+3. 변경사항 적용
+`FLUSH PRIVILEGES';`
