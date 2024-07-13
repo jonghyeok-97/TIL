@@ -44,3 +44,16 @@ x : 실행권한(1)
 #### 가상환경에서 특정 컴퓨터로 파일 전송하기
 * `scp -r ~/cs10/linuxServer/selenium user@[IP주소]:/C/Users/[사용자이름]/Desktop/`
   * 포트 추가하기 `-P 2222`
+
+#### 환경변수 설정하기
+```angular2html
+nano ~/.bashrc       // bash셸 열기, zsh는 ~/.zshrc
+export 값="파일경로"
+source ~/.bashrc     // 적용하기
+```
+
+#### 파일 및 디렉토리 복사
+```angular2html
+cp -r [디렉터리 있는 경로] [옮길 경로]  // 디렉토리는 하위 파일도 복사해야 하기 때문에 -r 옵션(recursive)을 추가
+cp [파일 있는 경로] [옮길 경로]     // 파일복사
+```
