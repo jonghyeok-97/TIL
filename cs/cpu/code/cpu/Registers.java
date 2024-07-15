@@ -1,6 +1,6 @@
-package cpu;
+package code.cpu;
 
-import cpu.unit.ProgramCounter;
+import code.cpu.unit.ProgramCounter;
 import java.util.Arrays;
 
 public class Registers {

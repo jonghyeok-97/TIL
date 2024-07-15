@@ -1,6 +1,6 @@
-package cpu.unit;
+package code.cpu.unit;
 
-import memory.RAM;
+import code.memory.RAM;
 
 public class ProgramCounter {
     private static final int BIT_ARCHITECTURE = 16;

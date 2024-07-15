@@ -1,6 +1,6 @@
-package cpu.unit;
+package code.cpu.unit;
 
-import cpu.unit.IR.InStructionType;
+import code.cpu.unit.IR.InStructionType;
 
 public class Bus {
 

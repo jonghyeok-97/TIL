@@ -1,4 +1,4 @@
-package cpu;
+package code.cpu;
 
 public class CPU {
 

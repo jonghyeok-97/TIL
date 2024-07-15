@@ -1,4 +1,4 @@
-package memory;
+package code.memory;
 
 import java.util.HashMap;
 import java.util.Map;

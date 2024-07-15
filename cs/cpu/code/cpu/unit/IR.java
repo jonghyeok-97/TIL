@@ -1,4 +1,4 @@
-package cpu.unit;
+package code.cpu.unit;
 
 import java.util.Map;
 

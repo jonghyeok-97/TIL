@@ -1,7 +1,7 @@
-package cpu;
+package code.cpu;
 
-import cpu.unit.Bus;
-import cpu.unit.IR.InStructionType;
+import code.cpu.unit.Bus;
+import code.cpu.unit.IR.InStructionType;
 
 // [ADD, SUB, AND, OR] 명령어만 처리 가능
 public class ArithmeticLogicUnit {

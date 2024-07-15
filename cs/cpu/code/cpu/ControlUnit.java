@@ -1,11 +1,11 @@
-package cpu;
+package code.cpu;
 
-import cpu.unit.IR;
-import cpu.unit.IR.InStructionType;
-import cpu.unit.Bus;
-import cpu.unit.Decoder;
+import code.cpu.unit.IR;
+import code.cpu.unit.IR.InStructionType;
+import code.cpu.unit.Bus;
+import code.cpu.unit.Decoder;
 import java.util.Optional;
-import memory.RAM;
+import code.memory.RAM;
 
 public class ControlUnit {
 
