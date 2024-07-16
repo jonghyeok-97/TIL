@@ -1,6 +1,5 @@
 package code;
 
-import code.Heap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -42,7 +41,7 @@ public class Memory {
         typeMap.put(type, length);
     }
 
-    public Pointer malloc(String type, int count) {
+    public int malloc(String type, int count) {
         if (!typeMap.containsKey(type)) {
             throw new IllegalArgumentException("등록되지 않은 타입입니다.");
         }
@@ -54,12 +53,11 @@ public class Memory {
         int byteSize = length * count;
 
         Pointer pointer = heap.save(byteSize);
-        stack.save(pointer);
-        return pointer;
+        return stack.save(pointer);
     }
 
-    public void free(Pointer pointer) {
-        stack.free(pointer);
+    public void free(int stackPointer) {
+        Pointer pointer = stack.free(stackPointer);
         heap.free(pointer);
     }
 
@@ -75,5 +73,21 @@ public class Memory {
 
     public void returnFrom(String name) {
         stack.returnFrom(name);
+    }
+
+    public int[] usage() {
+        int stackSize = stack.getSize();
+        int stackInUseSize = stack.getInUseSize();
+        int stackRemainSize = stack.getRemainSize();
+
+        int heapSize = heap.getSize();
+        int heapInUseSize = heap.getInUseSize();
+        int heapRemainSize = heap.getRemainSize();
+
+        return new int[]{stackSize, stackInUseSize, stackRemainSize, heapSize, heapInUseSize, heapRemainSize};
+    }
+
+    public String callStack() {
+        return stack.getCalls();
     }
 }

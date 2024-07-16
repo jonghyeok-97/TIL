@@ -1,22 +1,14 @@
 package code;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.stream.IntStream;
 
 public class Heap {
 
     private final boolean[] memory;
-    private final int size;
-    private final Map<Integer, Pointer> mallocMemory;
-    private final List<Pointer> mallocmemory = new LinkedList<>();
-    private int address;
+
 
     public Heap(int size) {
         this.memory = new boolean[size];
-        this.size = size;
-        this.mallocMemory = new HashMap<>();
     }
 
     public Pointer save(int byteSize) {
@@ -61,5 +53,22 @@ public class Heap {
         for (int i = baseAddress; i < baseAddress + byteSize; i++) {
             memory[i] = true;
         }
+    }
+
+    public int getSize() {
+        return memory.length;
+    }
+
+    public int getInUseSize() {
+        // 메모리중 true인것 개수 반환
+        return (int) IntStream.range(0, memory.length)
+                .filter(i -> memory[i])
+                .count();
+    }
+
+    public int getRemainSize() {
+        return (int) IntStream.range(0, memory.length)
+                .filter(i -> !memory[i])
+                .count();
     }
 }
