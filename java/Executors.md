@@ -52,3 +52,9 @@ invokeAny()
 close()는 자바19부터 지원, shutdown()과 같다.
 - shutdown()을 호출하고, 하루를 기다려도 작업이 완료되지 않으면 shutdownNow()를 호출한다.
 - 호출한 스레드에 인터럽트가 발생해도 shutdownNow()를 호출한다.
+
+#### 예외 정책
+- AbortPolicy : 새로운 작업을 제출할 때, RejectedExecutionException 을 발생. 디폴트
+- DiscardPolicy : 새로운 작업을 조용히 버린다.
+- CallerRunPolicy : 새로운 작업을 제출한 스레드가 대신해서 직접 작업을 실행한다.
+- 사용자 정의(RejectedExecutionHandler) : 개발자가 직접 정의한 거절 정책을 사용한다.
