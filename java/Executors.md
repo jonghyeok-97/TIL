@@ -53,6 +53,23 @@ close()는 자바19부터 지원, shutdown()과 같다.
 - shutdown()을 호출하고, 하루를 기다려도 작업이 완료되지 않으면 shutdownNow()를 호출한다.
 - 호출한 스레드에 인터럽트가 발생해도 shutdownNow()를 호출한다.
 
+#### ExecutorSerivce의 스레드 풀 전략
+- newSingleThreadPool() → 단일 스레드 풀 전략 , 주로 테스트 용도
+- newFixedThreadPool(nThreads) → 고정 스레드 풀 전략
+  - 초과 스레드는 생성하지 않는다.
+  - 큐 사이즈 제한 X (LinkedBlockingQueue)
+  - 스레드 수가 고정되어 있끼 때문에 CPU, 메모리가 어느정도 예측 가능한 안정적인 방식
+    - 갑작스런 요청 증가와 사용자가 늘어나면 문제가 될 수 있다.
+    - 트래픽이 일정하고 시스템 안정성이 가장 중요
+- newCachedThreadPool() → 캐시 스레드 풀 전략
+  - 기본 스레드를 사용하지 않고, 60초 생존 주기를 가진 초과 스레드만 사용
+  - 초과 스레드의 수는 제한이 없다.
+  - 큐에 작업을 저장하지 않는다 (SynchronousQueue)
+    - 대신에 생산자의 요청을 스레드 풀의 소비자 스레드가 직접 받아서 바로 처리한다.
+    - SynchoronousQueue 는 내부에 저장 공간(버퍼)이 없다.
+    - 일반적인 성장하는 서비스
+  - 모든 요청이 대기하지 않고 스레드가 바로바로 처리한다. 따라서 빠른 처리가 가능하다.
+
 #### 예외 정책
 - AbortPolicy : 새로운 작업을 제출할 때, RejectedExecutionException 을 발생. 디폴트
 - DiscardPolicy : 새로운 작업을 조용히 버린다.
