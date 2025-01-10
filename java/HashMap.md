@@ -1,0 +1,33 @@
+#### HashMap 내부 구조
+- 설명
+    - “A” → Object.hashCode() → 해시 코드 → 해시 코드 % CAPACITY 를 통해 해시 인덱스 생성 → 해시 인덱스를 bucket 배열의 인덱스로 사용
+    - buckets 의 default size 는 16.
+        - buckets 크기의 3/4(load factor) 만큼(처음에는 12) 데이터가 쌓이면 bucket 의 수를 동적으로 2배 확장함.(16 → 32)
+    - 해시 충돌이 일어날 경우, 자바는 Seperate Chaning(분리 연결법)을 통해 해결.
+       - 분리 연결법이란 bucket 내부를 Linked List 처럼 관리해서 노드가 다음 노드를 가리키도록 연결.
+       - 그래서, bucket 은 Linked List 로 관리하지만, 조회 시 해시 충돌이 많이 일어날 경우 Linked List 를 모두 순회한다는 점에서 최악의 시간 복잡도는 O(n)
+       - 자바 8 부터 Linked List 의 크기가 8 이상이면 Red-Black Tree 로 변경됨. 이는 조회의 최악시간 복잡도가 O(log n)임으로 훨씬 빠름. Red-Black Tree 란 이진 트리의 삽입/삭제 시 트리 높이의 불균형을 모든 노드는 빨간색 or 검은색, 리프 노드는 항상 검은색, 빨간색의 자식은 항상 검은색과 같은 규칙을 통해 트리 높이의 균형을 맞춘다.
+       - 만약, 이 트리의 크기가 6이 되면 다시 Tree 가 Linked List 로 바뀜.
+       - 해시 충돌 해결을 위해 개방 주소법이 있지만, 이는 bucked 에 데이터가 있으면 다른 버킷을 찾아 삽입하는데 이는 삽입/삭제가 효율적이지 않아서 사용X
+
+#### HashTable vs HashMap vs ConcurrentHashMap
+- 공통
+    - Map 인터페이스를 구현한 Collection
+- HashMap
+    - 동기화 처리가 없음
+        - 싱글 쓰레드 환경에서 사용
+        - 데이터 탐색속도가 좋음
+        - 신뢰성과 안정성 떨어짐.
+    - key, value 에 null 허용
+- HashTable
+    - 동기화 보장
+        - 멀티쓰레드 환경 OK.
+        - synchronized 를 사용해 모니터 락을 통해 동기화 적용 → 성능이 매우 느림
+    - key, value 에 null 허용 X
+- ConcurrentHashMap
+    - HashTable 의 동기화 성능 문제를 보완하기 위해 등장.
+    - 동기화 보장
+        - 멀티쓰레드 환경 O
+        - 두 수준으로 동기화 함.
+            - 버킷별로 락을 걸기 때문에 다른 버킷에는 접근이 가능해짐.
+    - key, value 에 null 허용 X
