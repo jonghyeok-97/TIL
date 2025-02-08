@@ -17,3 +17,19 @@ EXPIRE user:email:2 10
 del user:email:1
 # 현재 DB내 모든 key 삭제
 flushdb
+
+# redis활용 : 사용자 인증정보 저장(ex-refresh토큰)
+set user:1:refresh_token ejhajcmmslc ex 100000
+
+# redis활용 : 좋아요기능 구현
+set likes:posting:1 0
+incr likes:posting:1  # 1만큼 증가
+decr likes:posting:1  # 1만큼 감소
+get likes:posting:1
+
+# redis활용 : 재고관리
+set stocks:product:1 100
+decr stocks:product:1
+
+# redis활용 : 캐시 기능 구현
+set posting:1 "{ \"title\":\"hello java\", \"contents\":\"hello java is...\", ...}" ex 100
