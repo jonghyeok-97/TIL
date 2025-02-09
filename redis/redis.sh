@@ -62,3 +62,28 @@ rpush mypages www.chatgpt.com
 rpush mypages www.naver.com
 #최근 방문한 페이지 3개만 보여주는
 lrange mypages -3 -1
+
+# set자료구조
+# set에 값 추가
+sadd memberlist member1
+sadd memberlist member2
+sadd memberlist member2
+
+# set 의 요소 조회
+smembers memberlist
+# set 요소의 개수 조회
+scard memberlist
+# set에서 멤버제거
+srem memberlist member2
+# 특정 요소가 set안에 들어있는지 확인
+sismember memberlist member1
+
+#redis set 활용 : 좋아요
+# set 에 좋아요 추가
+sadd likes:posting:1 member1
+sadd likes:posting:1 member2
+sadd likes:posting:1 member1
+# 좋아요 개수
+scard likes:posting:1
+# 좋아요 눌렀는지 안눌렀는지 확인
+sismember likes:posting:1 member1
