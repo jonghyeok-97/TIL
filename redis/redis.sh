@@ -4,6 +4,7 @@ select db번호
 # DB내 모든 키 조회
 keys *
 
+---
 # 일반적인 String구조
 # 저장
 set user:email:1 hong1@naver.com
@@ -20,19 +21,17 @@ flushdb
 
 # redis활용 : 사용자 인증정보 저장(ex-refresh토큰)
 set user:1:refresh_token ejhajcmmslc ex 100000
-
 # redis활용 : 좋아요기능 구현
 set likes:posting:1 0
 incr likes:posting:1  # 1만큼 증가
 decr likes:posting:1  # 1만큼 감소
 get likes:posting:1
-
 # redis활용 : 재고관리
 set stocks:product:1 100
 decr stocks:product:1
-
 # redis활용 : 캐시 기능 구현
 set posting:1 "{ \"title\":\"hello java\", \"contents\":\"hello java is...\", ...}" ex 100
+---
 
 # List자료구조 (deque를 가짐)
 # list 삽입, 제거
@@ -62,6 +61,7 @@ rpush mypages www.chatgpt.com
 rpush mypages www.naver.com
 #최근 방문한 페이지 3개만 보여주는
 lrange mypages -3 -1
+---
 
 # set자료구조
 # set에 값 추가
@@ -87,3 +87,30 @@ sadd likes:posting:1 member1
 scard likes:posting:1
 # 좋아요 눌렀는지 안눌렀는지 확인
 sismember likes:posting:1 member1
+
+---
+# zset자료구조(Sorted Set)
+zadd memberlist 3 member1
+zadd memberlist 4 member2
+zadd memberlist 1 member3
+zadd memberlist 2 member4
+# 조회방법 : 기본적으로 score 기준 오름차순정렬
+zrange memberlist 0 -1
+# 내림차순 정렬
+zrevrange memberlist 0 -1
+# zset member4 삭제
+zrem memberlist member4
+# 특정 멤버가 몇번째 순서인지 출력 (오름차순 기준)
+zrank memberlist member1
+
+# zset 활용 : 최근 본 상품 목록
+# zset을 활용해서 최근시간순으로 score를 설정하여 중복없이 정렬,
+zadd  1 recent:products 151930 pineapple
+zadd  1 recent:products 152030 bananan
+zadd  1 recent:products 153030 orange
+zadd  1 recent:products 154030 apple
+zadd  1 recent:products 155030 apple # zset 도 set이므로 같은 상품 add 시, 시간만 업데이트
+# 최근 목록 순으로 3개 조회
+zrevrange recent:products 0 2
+# score까지 포함하여 전체 데이터 조회
+zrevrange recent:products 0 -1 withscores
