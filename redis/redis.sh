@@ -114,3 +114,18 @@ zadd  1 recent:products 155030 apple # zset 도 set이므로 같은 상품 add �
 zrevrange recent:products 0 2
 # score까지 포함하여 전체 데이터 조회
 zrevrange recent:products 0 -1 withscores
+---
+
+# hash : map형태의 자료구조, value값이 {key:value, key:value ...} 형태로 구성
+hset member:info:1 name hong email hong@naver.com age 30
+# 특정 요소 조회
+hget member:info:1 name
+# 모든 요소 조회
+hgetall member:info:1
+# 특정 요소 값만 수정 (JSON은 특정 요소값만 수정 못하고, JSON을 대체해야한다.)
+hset member:info:1 name kim
+# 특정 요소값의 값을 증가/감소 시킬경우
+hincrby member:info:1 age 3 # 3 증가
+hincrby member:info:1 age -3 # 3 감소
+
+# redis hash 활용 예시 : 빈번하게 변경되는 객체값 캐싱
