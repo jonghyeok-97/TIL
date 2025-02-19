@@ -10,7 +10,6 @@ public class BubbleSort implements Sorting {
      */
     @Override
     public int[] sort(int[] target) {
-
         for (int i = 0; i < target.length; i++) {
             System.out.println(i+"회전 결과 : " + Arrays.toString(target));
             for (int j = 0; j < target.length - 1; j++) {
@@ -22,7 +21,6 @@ public class BubbleSort implements Sorting {
                 }
             }
         }
-
         return target;
     }
 }
