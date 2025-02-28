@@ -1,5 +1,17 @@
 public class HeapSort implements Sorting {
 
+    /**
+     * heap 자료구조를 이용해 정렬하는 알고리즘. heap 자료구조란 complete binary tree 로 마지막 레벨을 제외한 나머지 레벨은 모두 꽉 차있고
+     * heap property(부모 노드는 자식보다 크거나 같거나, 자식보다 작거나 같아야 한다) 를 만족하는 자료구조이다.
+     *
+     * 1. heap 을 만든다. (이를 heapify 라 한다)
+     * 2. 루트 노드와 마지막 요소를 바꾸고, 마지막 요소를 제외한 나머지 요소들을 가지고 다시 heap 을 만든다.
+     * 3. 1번과 2번을 반복한다.
+     *
+     * Stable: X
+     * In-Place: O
+     * 최악,최고,평균 시간복잡도 : O(n log n)
+     */
     @Override
     public int[] sortAsc(int[] target) {
         buildMaxHeap(target);
