@@ -1,7 +1,7 @@
 #### heap sort 
 - 최선/최악 시간 복잡도 O(n logn)
-- In-Place : O
 - Stable : X
+- In-Place : O
 - 이진 힙(binary heap) 자료구조를 사용
 
 * Heap 이란?
