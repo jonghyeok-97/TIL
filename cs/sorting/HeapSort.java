@@ -1,7 +1,7 @@
 public class HeapSort implements Sorting {
 
     @Override
-    public int[] sort(int[] target) {
+    public int[] sortAsc(int[] target) {
         buildMaxHeap(target);
         sortHeap(target);
         return target;

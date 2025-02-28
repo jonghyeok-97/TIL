@@ -11,7 +11,7 @@ public class MergeSort implements Sorting {
      * Stable : O
      */
     @Override
-    public int[] sort(int[] target) {
+    public int[] sortAsc(int[] target) {
         System.out.println("원본 : " + Arrays.toString(target));
         divide(target, 0, target.length - 1);
         System.out.println("결과 : " + Arrays.toString(target));

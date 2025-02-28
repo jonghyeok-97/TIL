@@ -13,7 +13,7 @@ public class SelectionSort implements Sorting {
      * 해당 자리를 선택하고 그 자리에 오는 값을 찾는 것.
      */
     @Override
-    public int[] sort(int[] target) {
+    public int[] sortAsc(int[] target) {
         for (int i = 0; i < target.length; i++) {
             System.out.println(i+"회차 : " + Arrays.toString(target));
             int value = Integer.MAX_VALUE;

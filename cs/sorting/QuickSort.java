@@ -9,7 +9,7 @@ public class QuickSort implements Sorting {
      * In-Place -> O
      */
     @Override
-    public int[] sort(int[] target) {
+    public int[] sortAsc(int[] target) {
         partition(target, 0, target.length - 1);
         return target;
     }

@@ -12,7 +12,7 @@ public class InsertionSort implements Sorting {
      * Stable : O
      */
     @Override
-    public int[] sort(int[] target) {
+    public int[] sortAsc(int[] target) {
         for (int i = 1; i < target.length; i++) {
             int here = target[i];
             int prevIndex = i - 1;

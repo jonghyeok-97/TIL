@@ -9,7 +9,7 @@ public class SortingMain {
 //        Sorting sorting = new MergeSort();
 //        Sorting sorting = new QuickSort();
         Sorting sorting = new HeapSort();
-        int[] sortedArr = sorting.sort(new int[]{230, 10, 60, 550, 40, 220, 20});
+        int[] sortedArr = sorting.sortAsc(new int[]{230, 10, 60, 550, 40, 220, 20});
         System.out.println("결과 : " + Arrays.toString(sortedArr));
     }
 }
