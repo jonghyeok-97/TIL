@@ -27,7 +27,11 @@ public class SelectionSort implements Sorting {
             target[index] = target[i];
             target[i] = value;
         }
-
         return target;
+    }
+
+    @Override
+    public int[] sortDecs(int[] target) {
+        return new int[0];
     }
 }

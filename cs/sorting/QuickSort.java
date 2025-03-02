@@ -14,6 +14,11 @@ public class QuickSort implements Sorting {
         return target;
     }
 
+    @Override
+    public int[] sortDecs(int[] target) {
+        return new int[0];
+    }
+
     private void partition(int[] arr, int left, int right) {
         if(left >= right) return;
         int mid = (left + right) / 2;

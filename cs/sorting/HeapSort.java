@@ -19,6 +19,11 @@ public class HeapSort implements Sorting {
         return target;
     }
 
+    @Override
+    public int[] sortDecs(int[] target) {
+        return new int[0];
+    }
+
     private void sortHeap(int[] target) {
         for (int i = target.length - 1; i > 0; i--) {
             swap(target, i, 0);

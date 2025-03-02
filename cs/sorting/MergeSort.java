@@ -18,6 +18,11 @@ public class MergeSort implements Sorting {
         return target;
     }
 
+    @Override
+    public int[] sortDecs(int[] target) {
+        return new int[0];
+    }
+
     private void divide(int[] arr, int left, int right) {
         if (left >= right) {
             return;
