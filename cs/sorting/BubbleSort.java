@@ -26,6 +26,19 @@ public class BubbleSort implements Sorting {
 
     @Override
     public int[] sortDecs(int[] target) {
-        return new int[0];
+        for (int i = 0; i < target.length; i++) {
+            for (int j = 0; j < target.length - 1; j++) {
+                if (target[j] < target[j + 1]) {
+                    swap(target, j, j+1);
+                }
+            }
+        }
+        return target;
+    }
+
+    private void swap(int[] target, int idx1, int idx2) {
+        int temp = target[idx1];
+        target[idx1] = target[idx2];
+        target[idx2] = temp;
     }
 }
