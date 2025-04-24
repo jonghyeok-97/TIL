@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 public class PG_카카오블라인드_메뉴리뉴얼 {
@@ -22,6 +24,7 @@ public class PG_카카오블라인드_메뉴리뉴얼 {
             }
         }
 
+        // 중복된 메뉴 더하기
         Map<String, Integer> map = madeMenu.stream()
                 .collect(Collectors.toMap(
                         menu -> menu,
@@ -29,27 +32,26 @@ public class PG_카카오블라인드_메뉴리뉴얼 {
                         (value1, value2) -> value1 + value2
                 ));
 
-        // map.values()stream()
-        //     .sorted(Collectors.reverseOrder())
-        //     .collect(Collectors)
-
         List<String> answers = new ArrayList<>();
 
         for(int i = 0; i < course.length; i++) {
-            int order = course[i];
+            int courseSize = course[i];
             List<String> sortedMenu = map.keySet().stream()
-                    .filter(key -> key.length() == order)
+                    .filter(key -> key.length() == courseSize)
                     .filter(key -> map.get(key) >= 2)
                     .sorted((key1, key2) -> map.get(key2).compareTo(map.get(key1)))
                     .collect(Collectors.toList());
             // System.out.println(sortedMenu);
-            if(!sortedMenu.isEmpty()) {
-                String menu = sortedMenu.get(0);
-                int maxValue = map.get(menu);
-                sortedMenu.stream()
-                        .filter(m -> map.get(m) == maxValue)
-                        .forEach(m -> answers.add(m));
-            }
+
+            OptionalInt max = sortedMenu.stream()
+                    .mapToInt(menu -> map.get(menu))
+                    .max();
+
+            max.ifPresent(c ->
+                    sortedMenu.stream()
+                            .filter(menu -> map.get(menu) == c)
+                            .forEach(menu -> answers.add(menu))
+            );
         }
         return answers.stream()
                 .sorted()
